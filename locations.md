@@ -1,4 +1,4 @@
-I## Countries
+## Countries
 
 ### Afghanistan
 * **Other accepted names:** "AF", "AFG"
