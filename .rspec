@@ -1,0 +1,4 @@
+-I spec
+-r support
+--color
+--tty

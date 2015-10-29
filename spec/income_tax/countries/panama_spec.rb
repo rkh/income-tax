@@ -1,0 +1,89 @@
+describe IncomeTax::Countries::Panama do
+  subject(:result) { described_class.new(income: income, income_type: type) }
+  let(:type) { :gross }
+
+  describe "from gross income of 0" do
+    let(:income)       { 0                                         }
+    its(:rate)         { should be == Rational(0, 1)               }
+    its(:gross_income) { should be == 0                            }
+    its(:net_income)   { should be == 0                            }
+    its(:taxes)        { should be == 0                            }
+  end
+
+  describe "from gross income of 1000" do
+    let(:income)       { 1000                                      }
+    its(:rate)         { should be == Rational(0, 1)               }
+    its(:gross_income) { should be == 1000                         }
+    its(:net_income)   { should be == 1000                         }
+    its(:taxes)        { should be == 0                            }
+  end
+
+  describe "from gross income of 10000" do
+    let(:income)       { 10000                                     }
+    its(:rate)         { should be == Rational(0, 1)               }
+    its(:gross_income) { should be == 10000                        }
+    its(:net_income)   { should be == 10000                        }
+    its(:taxes)        { should be == 0                            }
+  end
+
+  describe "from gross income of 100000" do
+    let(:income)       { 100000                                    }
+    its(:rate)         { should be == Rational(89, 485)            }
+    its(:gross_income) { should be == 100000                       }
+    its(:net_income)   { should be == 81650                        }
+    its(:taxes)        { should be == 18350                        }
+  end
+
+  describe "from gross income of 100000000" do
+    let(:income)       { 100000000                                 }
+    its(:rate)         { should be == Rational(817, 3269)          }
+    its(:gross_income) { should be == 100000000                    }
+    its(:net_income)   { should be == 75006650                     }
+    its(:taxes)        { should be == 24993350                     }
+  end
+
+  describe "from net income of 0" do
+    let(:type)         { :net                                      }
+    let(:income)       { 0                                         }
+    its(:rate)         { should be == Rational(0, 1)               }
+    its(:gross_income) { should be == 0                            }
+    its(:net_income)   { should be == 0                            }
+    its(:taxes)        { should be == 0                            }
+  end
+
+  describe "from net income of 1000" do
+    let(:type)         { :net                                      }
+    let(:income)       { 1000                                      }
+    its(:rate)         { should be == Rational(0, 1)               }
+    its(:gross_income) { should be == 1000                         }
+    its(:net_income)   { should be == 1000                         }
+    its(:taxes)        { should be == 0                            }
+  end
+
+  describe "from net income of 10000" do
+    let(:type)         { :net                                      }
+    let(:income)       { 10000                                     }
+    its(:rate)         { should be == Rational(0, 1)               }
+    its(:gross_income) { should be == 10000                        }
+    its(:net_income)   { should be == 10000                        }
+    its(:taxes)        { should be == 0                            }
+  end
+
+  describe "from net income of 100000" do
+    let(:type)         { :net                                      }
+    let(:income)       { 100000                                    }
+    its(:rate)         { should be == Rational(23, 117)            }
+    its(:gross_income) { should be == "124466.666666666667".to_d   }
+    its(:net_income)   { should be == 100000                       }
+    its(:taxes)        { should be == "24466.6666666666667".to_d   }
+  end
+
+  describe "from net income of 100000000" do
+    let(:type)         { :net                                      }
+    let(:income)       { 100000000                                 }
+    its(:rate)         { should be == Rational(1044, 4177)         }
+    its(:gross_income) { should be == "133324466.666666667".to_d   }
+    its(:net_income)   { should be == 100000000                    }
+    its(:taxes)        { should be == "33324466.6666666667".to_d   }
+  end
+end
