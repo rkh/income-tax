@@ -1,2 +1,3 @@
 language: ruby
+ruby: [2.2, 2.1]
 script: rspec

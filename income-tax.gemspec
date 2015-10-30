@@ -8,4 +8,5 @@ Gem::Specification.new "income-tax", IncomeTax::VERSION do |s|
   s.homepage    = "https://github.com/rkh/income-tax"
   s.license     = "MIT"
   s.files       = `git ls-files`.split("\n") - %w[.gitignore .travis.yml]
+  s.required_ruby_version = '>= 2.1.0'
 end
