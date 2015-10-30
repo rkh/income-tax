@@ -48,7 +48,7 @@ This gem uses a very broad definition of countries, whereby the following are co
 * UN member states.
 * Overseas territories, outermost regions and colonies.
 * Some autonomous regions enjoying partial sovereignty, esp. if they have full autonomy over tax regime and collection (like Hong Kong).
-* States with limited but widespread recognition (like Taiwan, Kosovo, Palest.ine)
+* States with limited but widespread recognition (like Taiwan, Kosovo, Palestine).
 
 Things not considered separate countries:
 
