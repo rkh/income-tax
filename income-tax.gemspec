@@ -1,4 +1,4 @@
-require_relative "lib/income_tax/version"
+require "#{__dir__}/lib/income_tax/version"
 
 Gem::Specification.new "income-tax", IncomeTax::VERSION do |s|
   s.description = "Estimate Income Tax for different Countries"
