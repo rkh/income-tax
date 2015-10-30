@@ -19,7 +19,7 @@ module IncomeTax
           remainder                           "13.3%"
         end
 
-        levels :coupe do
+        levels :couple do
           standard_deduction = 7812
           level standard_deduction + 0,       "0%"
           level standard_deduction + 15174,   "1%"
