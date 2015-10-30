@@ -10,7 +10,7 @@ module IncomeTax
       set_income(:net,   options)
       set_income(:gross, options)
 
-      location         = CountryRegister[options[:location] || options[:country] || no_country]
+      location         = CountryRegister[options[:country]  || no_country]
       options[:income] = parse_income(options[:income], location)
       location.new(options)
     end
@@ -22,7 +22,7 @@ module IncomeTax
         when Numeric      then options[:income]      = arg
         when Symbol       then options[arg]          = true
         when PATTERN      then options[:income]      = arg
-        when String       then options[:location]    = arg
+        when String       then options[:country]     = arg
         when MONEY        then options[:income]      = arg
         end
       end

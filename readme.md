@@ -48,14 +48,15 @@ This gem uses a very broad definition of countries, whereby the following are co
 * UN member states.
 * Overseas territories, outermost regions and colonies.
 * Some autonomous regions enjoying partial sovereignty, esp. if they have full autonomy over tax regime and collection (like Hong Kong).
-* States with limited but widespread recognition (like Taiwan, Kosovo, Palestine)
+* States with limited but widespread recognition (like Taiwan, Kosovo, Palest.ine)
 
 Things not considered separate countries:
 
 * Sovereign entities without any actual territory (The Holy See, Sovereign Military Order of Malta).
-* States with very limited recognition (like Northern Cyprus, South Ossetia)
-* Scotland, Wales, England and Northern Island (they are collectively treated as one country)
+* States with very limited recognition (like Northern Cyprus, South Ossetia).
+* Scotland, Wales, England and Northern Island (they are collectively treated as one country).
 * Unclaimed or heavily disputed territories.
+* Antartica.
 
 These decisions and differentiations are made to best model international income taxes and are not meant to convey any political opinion.
 
@@ -68,7 +69,7 @@ There is also a [full list of countries](locations.md).
 #### United States
 
 * **Federal only:** By default only federal taxes are calculated.
-* **State taxes:** Passing in the state option with either the full name of the state of the two letter abbreviation will also take state taxes into account.
+* **State taxes:** Passing in the `state` option with either the full name of the state of the two letter abbreviation will also take state taxes into account.
 * **Washington, D.C.:** Use the state option as if it was a state, which by the way it should be.
 * **Guam, Puerto Rico, and other territories:** Treat them like separate countries.
 
