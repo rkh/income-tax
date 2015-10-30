@@ -6,7 +6,7 @@ module IncomeTax
 
         def level_category
           return :single unless married?
-          return :joint if joint?
+          return :joint if joint_statement?
           return :separate unless head_of_household or head_of_household.nil?
           :head_of_household
         end
