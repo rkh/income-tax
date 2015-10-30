@@ -1,3 +1,5 @@
+require 'income_tax/countries/france'
+
 module IncomeTax
   module Countries
     class FrenchSouthernTerritories < Models::Delegate(France)

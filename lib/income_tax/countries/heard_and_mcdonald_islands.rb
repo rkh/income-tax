@@ -1,3 +1,5 @@
+require 'income_tax/countries/australia'
+
 module IncomeTax
   module Countries
     class HeardAndMcdonaldIslands < Models::Delegate(Australia)

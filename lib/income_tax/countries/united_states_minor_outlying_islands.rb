@@ -1,3 +1,5 @@
+require 'income_tax/countries/united_states'
+
 module IncomeTax
   module Countries
     class UnitedStatesMinorOutlyingIslands < Models::Delegate(UnitedStates)
