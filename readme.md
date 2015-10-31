@@ -56,7 +56,7 @@ Things not considered separate countries:
 * States with very limited recognition (like Northern Cyprus, South Ossetia).
 * Scotland, Wales, England and Northern Ireland (they are collectively treated as one country).
 * Unclaimed or heavily disputed territories.
-* Antartica.
+* Antarctica.
 
 These decisions and differentiations are made to best model international income taxes and are not meant to convey any political opinion.
 
@@ -104,7 +104,7 @@ IncomeTax.new("TZ", "16m", location: "Zanzibar")
 * **`joint_statement`:** If married, whether or not both spouses file a joint statement. Respected by the U.S. American tax model.
 * **`head_of_household`:** Whether or not the tax payer is the head of the household. Respected by the U.S. American tax model.
 * **`self_employed`:** Whether the tax payer is employed or freelancing. Respected by the Costa Rican and Nicaraguan tax model.
-* **`age` or `birhtday`:** To determine age depended taxes. Respected by the Australian, Bangladeshi and Barbadian tax model.
+* **`age` or `birthday`:** To determine age depended taxes. Respected by the Australian, Bangladeshi and Barbadian tax model.
 * **`gender`:** `male` or `female`, respected by the Bangladeshi tax model.
 * **`disabled`:** Whether or not the tax payer has a physical or psychological disability, respected by the Bangladeshi tax model.
 * **`wounded_freedom_fighter`:** Whether or not the tax payer is a war-wounded freedom fighter, respected by the Bangladeshi tax model.
