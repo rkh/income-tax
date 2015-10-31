@@ -18,9 +18,11 @@ module IncomeTax
       SOLIDARITY = Rate("5.5%")
 
       def net_taxes(income, lower, upper, lower_taxes, lower_rate, upper_rate, upper_taxes)
-        step   = (upper_rate - lower_rate) / (upper_taxes - lower_taxes + 1)
-        steps  = income - lower_taxes
-        rate   = lower_rate + Rate(step * steps)
+        lower_income = lower - lower_taxes
+        upper_income = upper - upper_taxes
+        step         = (upper_rate - lower_rate) / (upper_income - lower_income)
+        steps        = income - lower_income
+        rate         = lower_rate + Rate(step * steps)
         rate.net_taxes(steps).to_i + lower_taxes
       end
 

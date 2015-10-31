@@ -63,27 +63,27 @@ describe IncomeTax::Countries::Germany do
   describe "from net income of 10000" do
     let(:type)         { :net                                      }
     let(:income)       { 10000                                     }
-    its(:rate)         { should be == Rational(96, 143)            }
-    its(:gross_income) { should be == "30425.010582010582".to_d    }
+    its(:rate)         { should be == Rational(69, 862)            }
+    its(:gross_income) { should be == "10870.010582010582".to_d    }
     its(:net_income)   { should be == 10000                        }
-    its(:taxes)        { should be == "20425.010582010582".to_d    }
+    its(:taxes)        { should be == "870.010582010582".to_d      }
   end
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
     let(:income)       { 100000                                    }
-    its(:rate)         { should be == Rational(142, 315)           }
-    its(:gross_income) { should be == "182081.10582010582".to_d    }
+    its(:rate)         { should be == Rational(199, 510)           }
+    its(:gross_income) { should be == "163989.10582010582".to_d    }
     its(:net_income)   { should be == 100000                       }
-    its(:taxes)        { should be == "82081.10582010582".to_d     }
+    its(:taxes)        { should be == "63989.10582010582".to_d     }
   end
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(71, 152)            }
-    its(:gross_income) { should be == "187655931.82010582".to_d    }
+    its(:rate)         { should be == Rational(99, 212)            }
+    its(:gross_income) { should be == "187609588.82010582".to_d    }
     its(:net_income)   { should be == 100000000                    }
-    its(:taxes)        { should be == "87655931.82010582".to_d     }
+    its(:taxes)        { should be == "87609588.82010582".to_d     }
   end
 end
