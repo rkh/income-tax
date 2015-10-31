@@ -54,7 +54,7 @@ Things not considered separate countries:
 
 * Sovereign entities without any actual territory (The Holy See, Sovereign Military Order of Malta).
 * States with very limited recognition (like Northern Cyprus, South Ossetia).
-* Scotland, Wales, England and Northern Island (they are collectively treated as one country).
+* Scotland, Wales, England and Northern Ireland (they are collectively treated as one country).
 * Unclaimed or heavily disputed territories.
 * Antartica.
 
