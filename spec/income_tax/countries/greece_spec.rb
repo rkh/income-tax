@@ -1,8 +1,9 @@
 describe IncomeTax::Countries::Greece do
-  subject(:result) { described_class.new(income: income, income_type: type) }
+  subject(:result) { described_class.new(income: income, income_type: type, tax_year: tax_year) }
   let(:type) { :gross }
 
   describe "from gross income of 0" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -11,6 +12,7 @@ describe IncomeTax::Countries::Greece do
   end
 
   describe "from gross income of 1000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(13, 50)             }
     its(:gross_income) { should be == 1000                         }
@@ -19,6 +21,7 @@ describe IncomeTax::Countries::Greece do
   end
 
   describe "from gross income of 10000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(13, 50)             }
     its(:gross_income) { should be == 10000                        }
@@ -27,6 +30,7 @@ describe IncomeTax::Countries::Greece do
   end
 
   describe "from gross income of 100000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(59, 200)            }
     its(:gross_income) { should be == 100000                       }
@@ -35,6 +39,7 @@ describe IncomeTax::Countries::Greece do
   end
 
   describe "from gross income of 100000000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(98, 297)            }
     its(:gross_income) { should be == 100000000                    }
@@ -44,6 +49,7 @@ describe IncomeTax::Countries::Greece do
 
   describe "from net income of 0" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -53,6 +59,7 @@ describe IncomeTax::Countries::Greece do
 
   describe "from net income of 1000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(13, 50)             }
     its(:gross_income) { should be == "1351.35135135135135".to_d   }
@@ -62,6 +69,7 @@ describe IncomeTax::Countries::Greece do
 
   describe "from net income of 10000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(13, 50)             }
     its(:gross_income) { should be == "13513.5135135135135".to_d   }
@@ -71,6 +79,7 @@ describe IncomeTax::Countries::Greece do
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(59, 193)            }
     its(:gross_income) { should be == "144029.850746268657".to_d   }
@@ -80,6 +89,7 @@ describe IncomeTax::Countries::Greece do
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(131, 397)           }
     its(:gross_income) { should be == "149248507.462686567".to_d   }

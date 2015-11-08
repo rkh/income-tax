@@ -1,8 +1,9 @@
 describe IncomeTax::Countries::Germany do
-  subject(:result) { described_class.new(income: income, income_type: type) }
+  subject(:result) { described_class.new(income: income, income_type: type, tax_year: tax_year) }
   let(:type) { :gross }
 
   describe "from gross income of 0" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -11,6 +12,7 @@ describe IncomeTax::Countries::Germany do
   end
 
   describe "from gross income of 1000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(11, 200)            }
     its(:gross_income) { should be == 1000                         }
@@ -19,6 +21,7 @@ describe IncomeTax::Countries::Germany do
   end
 
   describe "from gross income of 10000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(17, 216)            }
     its(:gross_income) { should be == 10000                        }
@@ -27,6 +30,7 @@ describe IncomeTax::Countries::Germany do
   end
 
   describe "from gross income of 100000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(144, 367)           }
     its(:gross_income) { should be == 100000                       }
@@ -35,6 +39,7 @@ describe IncomeTax::Countries::Germany do
   end
 
   describe "from gross income of 100000000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(261, 517)           }
     its(:gross_income) { should be == 100000000                    }
@@ -44,6 +49,7 @@ describe IncomeTax::Countries::Germany do
 
   describe "from net income of 0" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -53,6 +59,7 @@ describe IncomeTax::Countries::Germany do
 
   describe "from net income of 1000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(11, 200)            }
     its(:gross_income) { should be == "1058.2010582010582".to_d    }
@@ -62,6 +69,7 @@ describe IncomeTax::Countries::Germany do
 
   describe "from net income of 10000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(69, 862)            }
     its(:gross_income) { should be == "10870.010582010582".to_d    }
@@ -71,6 +79,7 @@ describe IncomeTax::Countries::Germany do
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(199, 510)           }
     its(:gross_income) { should be == "163989.10582010582".to_d    }
@@ -80,6 +89,7 @@ describe IncomeTax::Countries::Germany do
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(99, 212)            }
     its(:gross_income) { should be == "187609588.82010582".to_d    }

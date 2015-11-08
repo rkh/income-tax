@@ -1,8 +1,9 @@
 describe IncomeTax::Countries::Switzerland::Nidwalden do
-  subject(:result) { IncomeTax::Countries::Switzerland.new(income: income, income_type: type, canton: 'Nidwalden') }
+  subject(:result) { IncomeTax::Countries::Switzerland.new(income: income, income_type: type, tax_year: tax_year, canton: 'Nidwalden') }
   let(:type) { :gross }
 
   describe "from gross income of 0" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -11,6 +12,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
   end
 
   describe "from gross income of 1000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(13, 423)            }
     its(:gross_income) { should be == 1000                         }
@@ -19,6 +21,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
   end
 
   describe "from gross income of 10000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(13, 423)            }
     its(:gross_income) { should be == 10000                        }
@@ -27,6 +30,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
   end
 
   describe "from gross income of 100000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(34, 249)            }
     its(:gross_income) { should be == 100000                       }
@@ -35,6 +39,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
   end
 
   describe "from gross income of 100000000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(128, 243)           }
     its(:gross_income) { should be == 100000000                    }
@@ -44,6 +49,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
 
   describe "from net income of 0" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -53,6 +59,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
 
   describe "from net income of 1000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(41, 1354)           }
     its(:gross_income) { should be == "1031.2366281557552418326272999572100984".to_d }
@@ -62,6 +69,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
 
   describe "from net income of 10000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(41, 1354)           }
     its(:gross_income) { should be == "10312.366281557552418326272999572100984".to_d }
@@ -71,6 +79,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(45, 343)            }
     its(:gross_income) { should be == "115099.730663707721054244576861055691896632".to_d }
@@ -80,6 +89,7 @@ describe IncomeTax::Countries::Switzerland::Nidwalden do
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(123, 311)           }
     its(:gross_income) { should be == "165426769.322525139357111982759414772765352832".to_d }

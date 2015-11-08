@@ -1,8 +1,9 @@
 describe IncomeTax::Countries::Switzerland::Thurgau do
-  subject(:result) { IncomeTax::Countries::Switzerland.new(income: income, income_type: type, canton: 'Thurgau') }
+  subject(:result) { IncomeTax::Countries::Switzerland.new(income: income, income_type: type, tax_year: tax_year, canton: 'Thurgau') }
   let(:type) { :gross }
 
   describe "from gross income of 0" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -11,6 +12,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
   end
 
   describe "from gross income of 1000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(4, 447)             }
     its(:gross_income) { should be == 1000                         }
@@ -19,6 +21,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
   end
 
   describe "from gross income of 10000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(4, 447)             }
     its(:gross_income) { should be == 10000                        }
@@ -27,6 +30,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
   end
 
   describe "from gross income of 100000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(41, 186)            }
     its(:gross_income) { should be == 100000                       }
@@ -35,6 +39,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
   end
 
   describe "from gross income of 100000000" do
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(287, 338)           }
     its(:gross_income) { should be == 100000000                    }
@@ -44,6 +49,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
 
   describe "from net income of 0" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(0, 1)               }
     its(:gross_income) { should be == 0                            }
@@ -53,6 +59,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
 
   describe "from net income of 1000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(2, 225)             }
     its(:gross_income) { should be == "1008.9725065221753963353".to_d }
@@ -62,6 +69,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
 
   describe "from net income of 10000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
     its(:rate)         { should be == Rational(2, 225)             }
     its(:gross_income) { should be == "10089.725065221753963353".to_d }
@@ -71,6 +79,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
     its(:rate)         { should be == Rational(37, 182)            }
     its(:gross_income) { should be == "125517.406165938413853163".to_d }
@@ -80,6 +89,7 @@ describe IncomeTax::Countries::Switzerland::Thurgau do
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
+    let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
     its(:rate)         { should be == Rational(193, 361)           }
     its(:gross_income) { should be == "214882532.10033034965433726545".to_d }

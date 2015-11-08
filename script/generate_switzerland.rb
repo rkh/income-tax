@@ -58,11 +58,13 @@ end
 
 print "Scanning lines (x10.000)   "
 counter = 0
-source.scan(/^0601(.{2})([AB].)N {7}\d{08}(\d{9})(\d{9}) \d{2}\d{9}0(\d{4})/) do |canton, code, lower_boundry, interval, rate_digits|
+source.scan(/^0601(.{2})([AB].)N {7}(\d{04})\d{04}(\d{9})(\d{9}) \d{2}\d{9}0(\d{4})/) do |canton, code, year, lower_boundry, interval, rate_digits|
   counter += 1
   print ?. if counter % 10_000 == 0
-  boundry = lower_boundry.to_i + interval.to_i
-  levels  = cantons.fetch(canton)[:levels][code.to_sym] ||= IncomeTax::Models::Progressive::Levels.new
+  boundry   = lower_boundry.to_i + interval.to_i
+  years     = cantons.fetch(canton)[:levels] ||= {}
+  year_data = years[Integer(year)]           ||= {}
+  levels    = year_data[code.to_sym]         ||= IncomeTax::Models::Progressive::Levels.new
   levels.level(boundry * 0.12r - 1, "0.#{rate_digits}".to_r)
 end
 puts
@@ -71,9 +73,11 @@ puts
 print "Setting remainder          "
 cantons.each_value do |canton|
   print ?.
-  canton[:levels].each_value do |level|
-    levels = level.instance_variable_get("@levels")
-    level.remainder levels.last.last
+  canton[:levels].each_value do |map|
+    map.each_value do |level|
+      levels = level.instance_variable_get("@levels")
+      level.remainder levels.last.last
+    end
   end
 end
 puts

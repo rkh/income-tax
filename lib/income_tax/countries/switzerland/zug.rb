@@ -3,7 +3,7 @@ module IncomeTax
     class Switzerland
       class Zug < Canton
         register "Zug", "ZG"
-        lazy { @levels = Marshal.load(File.open("#{__dir__}/data/zug.dat")) }
+        lazy { @tax_years = Marshal.load(File.open("#{__dir__}/data/zug.dat")) }
         municipal_multiplier "60%"
         cantonal_multiplier  "82%"
       end

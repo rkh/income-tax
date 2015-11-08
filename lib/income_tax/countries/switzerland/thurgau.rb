@@ -3,7 +3,7 @@ module IncomeTax
     class Switzerland
       class Thurgau < Canton
         register "Thurgau", "TG"
-        lazy { @levels = Marshal.load(File.open("#{__dir__}/data/thurgau.dat")) }
+        lazy { @tax_years = Marshal.load(File.open("#{__dir__}/data/thurgau.dat")) }
         municipal_multiplier "146%"
         cantonal_multiplier  "117%"
       end

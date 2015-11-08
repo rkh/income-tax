@@ -74,10 +74,32 @@ module IncomeTax
         levels(:default).remainder(rate)
       end
 
-      def self.levels(category = nil, *options, &block)
-        return @levels ||= {} if category.nil?
-        result = levels[category] ||= Levels.new(*options)
-        result.instance_eval(&block) if block
+      def self.tax_years
+        @tax_years ||= {}
+      end
+
+      def self.tax_year(year)
+        tax_years.fetch(year) do
+          data       = {}
+          @tax_years = @tax_years.to_a.push([year, data]).sort_by { |e| e.first.to_i }.to_h
+          data
+        end
+      end
+
+      def self.levels(category = nil, *options, year: nil, &block)
+        category    ||= :default if block
+        @year_cache ||= {}
+        result        = tax_year(year)
+
+        if category
+          result = result[category] ||= Levels.new(*options)
+          result.instance_eval(&block) if block
+          @year_cache.clear
+        elsif year
+          @year_cache[year] ||= tax_years.select { |k,_| k.to_i <= year }.map(&:last).inject(:merge)
+          result = @year_cache.fetch(year)
+        end
+
         result
       end
 
@@ -86,7 +108,7 @@ module IncomeTax
       end
 
       def levels(category = level_category)
-        self.class.levels.fetch(category) do
+        self.class.levels(year: tax_year).fetch(category) do
           raise ArgumentError, "unkown level category #{category} (available: #{self.class.levels.keys.join(", ")})"
         end
       end

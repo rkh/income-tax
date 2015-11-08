@@ -3,7 +3,7 @@ module IncomeTax
     class Switzerland
       class Nidwalden < Canton
         register "Nidwalden", "NW"
-        lazy { @levels = Marshal.load(File.open("#{__dir__}/data/nidwalden.dat")) }
+        lazy { @tax_years = Marshal.load(File.open("#{__dir__}/data/nidwalden.dat")) }
         municipal_multiplier Rational(245, 266)
       end
     end

@@ -40,7 +40,6 @@ module IncomeTax
         names.each { |name| register_on[name] = self }
       end
 
-      @wants_options = []
       def self.wants_options(*options)
         @wants_options ||= superclass.wants_options.dup
 
@@ -54,6 +53,9 @@ module IncomeTax
 
         @wants_options
       end
+
+      @wants_options = []
+      wants_options :tax_year
 
       def self.currency(value = nil)
         @currency = value if value
@@ -123,9 +125,11 @@ module IncomeTax
         options[:children] ||= options[:married] ? 1 : 0
         options[:age]      ||= age_for(options[:birthday]) if options[:birthday]
         options[:age]      ||= 30
+        options[:tax_year] ||= Time.now.year
 
         options.select! { |k,v| self.class.wants_options.include? k }
 
+        options[:tax_year] &&= Integer(options[:tax_year])
         options[:age]      &&= Integer(options[:age])
         options[:children] &&= Integer(options[:children])
       end

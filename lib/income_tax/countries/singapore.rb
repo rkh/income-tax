@@ -4,7 +4,7 @@ module IncomeTax
       register "Singapore", "SG", "SGP"
       currency "SGD"
 
-      levels :old do
+      levels year: 2015 do
         level offset(20_000),  "0%"
         level offset(10_000),  "2%"
         level offset(10_000),  "3.5%"
@@ -16,7 +16,7 @@ module IncomeTax
         remainder "20%"
       end
 
-      levels :new do
+      levels year: 2017 do
         level offset(20_000), "0%"
         level offset(10_000), "2%"
         level offset(10_000), "3.5%"
@@ -28,15 +28,6 @@ module IncomeTax
         level offset(40_000), "19.5%"
         level offset(40_000), "20%"
         remainder "22%"
-      end
-
-      def level_category
-        year < 2017 ? :old : :new
-      end
-
-      def year
-        # TODO: config option?
-        Time.now.year
       end
     end
   end

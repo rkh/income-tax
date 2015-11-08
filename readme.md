@@ -109,6 +109,7 @@ IncomeTax.new("TZ", "16m", location: "Zanzibar")
 * **`disabled`:** Whether or not the tax payer has a physical or psychological disability, respected by the Bangladeshi tax model.
 * **`wounded_freedom_fighter`:** Whether or not the tax payer is a war-wounded freedom fighter, respected by the Bangladeshi tax model.
 * **`presumptive`:** Whether or not presumptive taxes are paid. Respected by the Tanzanian tax model. This value has a smart default.
+* **`tax_year`:** Year this income tax is due for. Supported by all tax models but tax rates might be incomplete for past or future tax years (will fall back on previous year if data is missing).
 
 ## Limitations
 
