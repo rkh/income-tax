@@ -4,11 +4,19 @@ module IncomeTax
       register "Austria", "AT", "AUT"
       currency "EUR"
 
-      level 3640,  "0%"
-      level 7270,  "21%"
-      level 21800, "31%"
-      level 50870, "41%"
-      remainder "50%"
+      levels year: 2005 do
+        level 10_000, "0%"
+        level 25_000, "38.333%"
+        level 51_000, "43.596%"
+        remainder "50%"
+      end
+
+      levels year: 2009 do
+        level 11_000, "0%"
+        level 25_000, "36.5%"
+        level 60_000, "43.2143%"
+        remainder "50%"
+      end
     end
   end
 end

@@ -2,10 +2,10 @@ describe IncomeTax::Countries::Germany do
   subject(:result) { described_class.new(income: income, income_type: type, tax_year: tax_year) }
   let(:type) { :gross }
 
-  describe "tax year 2003" do
+  describe "tax year 2002" do
 
     describe "from gross income of 0" do
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 0                                         }
       its(:rate)         { should be == Rational(0, 1)               }
       its(:gross_income) { should be == 0                            }
@@ -14,7 +14,7 @@ describe IncomeTax::Countries::Germany do
     end
 
     describe "from gross income of 1000" do
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 1000                                      }
       its(:rate)         { should be == Rational(0, 1)               }
       its(:gross_income) { should be == 1000                         }
@@ -23,7 +23,7 @@ describe IncomeTax::Countries::Germany do
     end
 
     describe "from gross income of 10000" do
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 10000                                     }
       its(:rate)         { should be == Rational(3, 47)              }
       its(:gross_income) { should be == 10000                        }
@@ -32,7 +32,7 @@ describe IncomeTax::Countries::Germany do
     end
 
     describe "from gross income of 100000" do
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 100000                                    }
       its(:rate)         { should be == Rational(119, 292)           }
       its(:gross_income) { should be == 100000                       }
@@ -41,7 +41,7 @@ describe IncomeTax::Countries::Germany do
     end
 
     describe "from gross income of 100000000" do
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 100000000                                 }
       its(:rate)         { should be == Rational(199, 389)           }
       its(:gross_income) { should be == 100000000                    }
@@ -51,7 +51,7 @@ describe IncomeTax::Countries::Germany do
 
     describe "from net income of 0" do
       let(:type)         { :net                                      }
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 0                                         }
       its(:rate)         { should be == Rational(0, 1)               }
       its(:gross_income) { should be == 0                            }
@@ -61,7 +61,7 @@ describe IncomeTax::Countries::Germany do
 
     describe "from net income of 1000" do
       let(:type)         { :net                                      }
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 1000                                      }
       its(:rate)         { should be == Rational(11, 200)            }
       its(:gross_income) { should be == "1058.2010582010582".to_d    }
@@ -71,7 +71,7 @@ describe IncomeTax::Countries::Germany do
 
     describe "from net income of 10000" do
       let(:type)         { :net                                      }
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 10000                                     }
       its(:rate)         { should be == Rational(56, 463)            }
       its(:gross_income) { should be == "11376.010582010582".to_d    }
@@ -81,7 +81,7 @@ describe IncomeTax::Countries::Germany do
 
     describe "from net income of 100000" do
       let(:type)         { :net                                      }
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 100000                                    }
       its(:rate)         { should be == Rational(156, 349)           }
       its(:gross_income) { should be == "180826.10582010582".to_d    }
@@ -91,7 +91,7 @@ describe IncomeTax::Countries::Germany do
 
     describe "from net income of 100000000" do
       let(:type)         { :net                                      }
-      let(:tax_year)     { 2003                                      }
+      let(:tax_year)     { 2002                                      }
       let(:income)       { 100000000                                 }
       its(:rate)         { should be == Rational(3532, 7065)         }
       its(:gross_income) { should be == "199975693.82010582".to_d    }
