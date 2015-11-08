@@ -5,25 +5,64 @@ module IncomeTax
       currency "EUR"
 
       wants_options :married
-
-      infinity = 1/0.0
-      ZONES    = [
-        [ 0,      8472,     0,             Rate("0%"),     Rate("0%")                                                 ],
-        [ 8473,   13469,    0,             Rate("14%"),    Rate((997.6r  * (13469 - 8472)  / 10_000 + 1400) / 10_000) ],
-        [ 13470,  52881,    "948.68".to_d, Rate("23.97%"), Rate((228.74r * (52881 - 13469) / 10_000 + 2397) / 10_000) ],
-        [ 52882,  250730,   13949,         Rate("42%"),    Rate("42%")                                                ],
-        [ 250731, infinity, 97045,         Rate("45%"),    Rate("45%")                                                ]
-      ]
-
       SOLIDARITY = Rate("5.5%")
+
+      def self.parse_line(line)
+        line.chomp.split("\t").map do |entry|
+          next 1/0.0 if entry == "–"
+          entry.include?(?.) ? Rational(entry) : Integer(entry)
+        end
+      end
+
+      def self.load_rates(path)
+        File.read(path).lines[1..-1].each do |line|
+          year, e0, e1, e2, e3, s1, s2, s3, a1, b1, a2, b2, b3, b4 = parse_line(line)
+          e4 = 1/0.0
+
+          tax_years[year] = [
+            [ 0,      e0, 0,  Rate("0%"), Rate("0%")                                           ],
+            [ e0+1,   e1, 0,  Rate(b1),   Rate((a1 * (e1 - e0) / 10_000 + b1*10_000) / 10_000) ],
+            [ e1+1,   e2, s1, Rate(b2),   Rate((a2 * (e2 - e1) / 10_000 + b2*10_000) / 10_000) ],
+            [ e2+1,   e3, s2, Rate(b3),   Rate(b3)                                             ],
+            [ e3+1,   e4, s3, Rate(b4),   Rate(b4)                                             ]
+          ]
+        end
+      end
+
+      def self.tax_years
+        @tax_years ||= {}
+      end
+
+      def self.first_year
+        @first_year ||= tax_years.to_a.first.first
+      end
+
+      def self.tax_year(year)
+        year = first_year if year < first_year
+        tax_years[year] || tax_year(year - 1)
+      end
+
+      def zones
+        @zones ||= self.class.tax_year(tax_year)
+      end
 
       def net_taxes(income, lower, upper, lower_taxes, lower_rate, upper_rate, upper_taxes)
         lower_income = lower - lower_taxes
         upper_income = upper - upper_taxes
-        step         = (upper_rate - lower_rate) / (upper_income - lower_income)
         steps        = income - lower_income
-        rate         = lower_rate + Rate(step * steps)
+
+        if upper_rate > lower_rate
+          step = (upper_rate - lower_rate) / (upper_income - lower_income)
+          rate = lower_rate + Rate(step * steps)
+        else
+          rate = lower_rate
+        end
+
         rate.net_taxes(steps).to_i + lower_taxes
+      end
+
+      def for_range(value)
+        value.to_f.nan? ? 1/0.0 : value
       end
 
       def calculate_net
@@ -31,11 +70,11 @@ module IncomeTax
         income /= 2 if married?
 
         case income
-        when 0 .. ZONES[0][1]               then @taxes = 0
-        when 0 .. ZONES[1][1] - ZONES[2][2] then @taxes = net_taxes(income, *ZONES[1], ZONES[2][2])
-        when 0 .. ZONES[2][1] - ZONES[3][2] then @taxes = net_taxes(income, *ZONES[2], ZONES[3][2])
-        when 0 .. ZONES[3][1] - ZONES[4][2] then @taxes = net_taxes(income, *ZONES[3], ZONES[4][2])
-        else                                     @taxes = net_taxes(income, *ZONES[4], ZONES[4][2])
+        when 0 .. for_range(zones[0][1])               then @taxes = 0
+        when 0 .. for_range(zones[1][1] - zones[2][2]) then @taxes = net_taxes(income, *zones[1], zones[2][2])
+        when 0 .. for_range(zones[2][1] - zones[3][2]) then @taxes = net_taxes(income, *zones[2], zones[3][2])
+        when 0 .. for_range(zones[3][1] - zones[4][2]) then @taxes = net_taxes(income, *zones[3], zones[4][2])
+        else                                                @taxes = net_taxes(income, *zones[4], zones[4][2])
         end
 
         @taxes *= 2 if married?
@@ -46,7 +85,7 @@ module IncomeTax
         income  = gross_income.to_i
         income /= 2 if married?
 
-        lower, upper, fixed, lower_rate, upper_rate = ZONES.detect { |l,u,*| income.between?(l,u) }
+        lower, upper, fixed, lower_rate, upper_rate = zones.detect { |l,u,*| income.between?(l,u) }
         step   = (upper_rate - lower_rate) / (upper - lower + 1)
         steps  = (income - lower + 1)
         rate   = lower_rate + Rate(step * steps)
@@ -55,6 +94,8 @@ module IncomeTax
         @taxes *= 2 if married?
         @taxes += SOLIDARITY.gross_taxes(@taxes)
       end
+
+      load_rates "#{__dir__}/germany/rates.tsv"
     end
   end
 end

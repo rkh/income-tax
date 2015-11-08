@@ -33,6 +33,7 @@ module IncomeTax
     def_delegators :to_d, :exponent, :fix, :frac, :precs, :sign, :split, :to_digits
 
     def initialize(value, other = nil)
+      value     = "100%" if value.respond_to? :infinite? and value.infinite?
       value     = Rate.rational(value, other) if other
       _, value  = case value
                   when /^\-?\d+(\.\d+)?\%$/ then @preferred_coercion, @to_r = :to_r, value.to_r / 100
