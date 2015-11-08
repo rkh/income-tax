@@ -53,7 +53,7 @@ module IncomeTax
         @taxes = rate.gross_taxes(steps).to_i + fixed
 
         @taxes *= 2 if married?
-        @taxes += SOLIDARITY.gross_taxes(income)
+        @taxes += SOLIDARITY.gross_taxes(@taxes)
       end
     end
   end
