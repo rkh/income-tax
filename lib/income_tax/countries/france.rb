@@ -7,11 +7,10 @@ module IncomeTax
       wants_options :married, :children
 
       levels :per_unit do
-        level 6011,   "0%"
-        level 11991,  "5.5%"
-        level 26631,  "14%"
-        level 71397,  "30%"
-        level 151200, "41%"
+        level 9690,   "0%"
+        level 26764,  "14%"
+        level 71754,  "30%"
+        level 151956, "41%"
         remainder     "45%"
       end
 
