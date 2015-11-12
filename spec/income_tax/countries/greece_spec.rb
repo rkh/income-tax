@@ -14,37 +14,37 @@ describe IncomeTax::Countries::Greece do
   describe "from gross income of 1000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
-    its(:rate)         { should be == Rational(13, 50)             }
+    its(:rate)         { should be == Rational(11, 50)             }
     its(:gross_income) { should be == 1000                         }
-    its(:net_income)   { should be == 740                          }
-    its(:taxes)        { should be == 260                          }
+    its(:net_income)   { should be == 780                          }
+    its(:taxes)        { should be == 220                          }
   end
 
-  describe "from gross income of 10000" do
+  describe "from gross income of 30000" do
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 10000                                     }
-    its(:rate)         { should be == Rational(13, 50)             }
-    its(:gross_income) { should be == 10000                        }
-    its(:net_income)   { should be == 7400                         }
-    its(:taxes)        { should be == 2600                         }
+    let(:income)       { 30000                                     }
+    its(:rate)         { should be == Rational(71, 300)            }
+    its(:gross_income) { should be == 30000                        }
+    its(:net_income)   { should be == 22900                        }
+    its(:taxes)        { should be == 7100                         }
   end
 
   describe "from gross income of 100000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
-    its(:rate)         { should be == Rational(59, 200)            }
+    its(:rate)         { should be == Rational(305, 864)           }
     its(:gross_income) { should be == 100000                       }
-    its(:net_income)   { should be == 70500                        }
-    its(:taxes)        { should be == 29500                        }
+    its(:net_income)   { should be == 64700                        }
+    its(:taxes)        { should be == 35300                        }
   end
 
   describe "from gross income of 100000000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(98, 297)            }
+    its(:rate)         { should be == Rational(118, 281)           }
     its(:gross_income) { should be == 100000000                    }
-    its(:net_income)   { should be == 67003500                     }
-    its(:taxes)        { should be == 32996500                     }
+    its(:net_income)   { should be == 58006700                     }
+    its(:taxes)        { should be == 41993300                     }
   end
 
   describe "from net income of 0" do
@@ -61,39 +61,39 @@ describe IncomeTax::Countries::Greece do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
-    its(:rate)         { should be == Rational(13, 50)             }
-    its(:gross_income) { should be == "1351.35135135135135".to_d   }
+    its(:rate)         { should be == Rational(11, 50)             }
+    its(:gross_income) { should be == "1282.0512820512821".to_d    }
     its(:net_income)   { should be == 1000                         }
-    its(:taxes)        { should be == "351.351351351351351".to_d   }
+    its(:taxes)        { should be == "282.051282051282051".to_d   }
   end
 
-  describe "from net income of 10000" do
+  describe "from net income of 30000" do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 10000                                     }
-    its(:rate)         { should be == Rational(13, 50)             }
-    its(:gross_income) { should be == "13513.5135135135135".to_d   }
-    its(:net_income)   { should be == 10000                        }
-    its(:taxes)        { should be == "3513.51351351351351".to_d   }
+    let(:income)       { 30000                                     }
+    its(:rate)         { should be == Rational(71, 275)            }
+    its(:gross_income) { should be == "40441.176470588235".to_d    }
+    its(:net_income)   { should be == 30000                        }
+    its(:taxes)        { should be == "10441.1764705882353".to_d   }
   end
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
-    its(:rate)         { should be == Rational(59, 193)            }
-    its(:gross_income) { should be == "144029.850746268657".to_d   }
+    its(:rate)         { should be == Rational(269, 711)           }
+    its(:gross_income) { should be == "160862.068965517241".to_d   }
     its(:net_income)   { should be == 100000                       }
-    its(:taxes)        { should be == "44029.8507462686567".to_d   }
+    its(:taxes)        { should be == "60862.068965517241".to_d    }
   end
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(131, 397)           }
-    its(:gross_income) { should be == "149248507.462686567".to_d   }
+    its(:rate)         { should be == Rational(181, 431)           }
+    its(:gross_income) { should be == "172402241.379310344".to_d   }
     its(:net_income)   { should be == 100000000                    }
-    its(:taxes)        { should be == "49248507.462686567".to_d    }
+    its(:taxes)        { should be == "72402241.379310344".to_d    }
   end
 end
