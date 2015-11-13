@@ -1,5 +1,7 @@
 module IncomeTax
   class Register
+    include Enumerable
+
     def initialize(type = "entry")
       @type     = type
       @register = {}
@@ -13,6 +15,10 @@ module IncomeTax
       @register.fetch(normalize(key)) do
         raise ArgumentError, "unknown #{@type} #{key.inspect}"
       end
+    end
+
+    def each(&block)
+      @register.values.uniq(&block)
     end
 
     def include?(key)
