@@ -1,7 +1,7 @@
 module IncomeTax
   module Factory
     PATTERN = /^[€$£]?\d+(?:(?:\.\d)?[km])?(?:\/mo)?$/i
-    MONEY   = -> o { defined? ::Money and o.is_a? Money }
+    MONEY   = -> o { o.respond_to? :to_money }
     private_constant :PATTERN
     extend self
 
@@ -47,7 +47,7 @@ module IncomeTax
         value = value.to_i * 12 if month
         Integer(value)
       when MONEY
-        value = value.exchange_to(location.currency)
+        value = value.to_money.exchange_to(location.currency)
         value.amount
       when Integer, BigDecimal
         value
