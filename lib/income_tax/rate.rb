@@ -86,7 +86,7 @@ module IncomeTax
     end
 
     def inspect
-      "#<%p:%p>" % [ self.class, to_s ]
+      "#<%p:%p, %p>" % [ self.class, to_s, to_r ]
     end
 
     def -@
@@ -102,6 +102,11 @@ module IncomeTax
 
     def eql?(other)
       other.class == self.class and other == self
+    end
+
+    def ==(other)
+      return false unless other.is_a? Numeric
+      super
     end
 
     def hash

@@ -68,7 +68,7 @@ There is also a [full list of countries](locations.md).
 
 #### United States
 
-* **Federal only:** By default only federal taxes are calculated.
+* **Federal only:** By default, only federal taxes are calculated.
 * **State taxes:** Passing in the `state` option with either the full name of the state of the two letter abbreviation will also take state taxes into account.
 * **Washington, D.C.:** Use the state option as if it was a state, which by the way it should be.
 * **Guam, Puerto Rico, and other territories:** Treat them like separate countries.
@@ -78,6 +78,16 @@ IncomeTax.new("US", "100k")
 IncomeTax.new("US", "100k", state: "California")
 
 IncomeTax.new("Guam", "100k")
+```
+
+#### Canada
+
+* **Federal only:** By default, only federal taxes are calculated.
+* **Territorial taxes:** Passing in the `territory` option with either the full name of the state of the two letter abbreviation will also take state taxes into account.
+
+``` ruby
+IncomeTax.new("CA", "100k")
+IncomeTax.new("CA", "100k", territory: "British Columbia")
 ```
 
 #### Switzerland
