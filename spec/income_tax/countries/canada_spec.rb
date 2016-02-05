@@ -122,10 +122,10 @@ describe IncomeTax::Countries::Canada do
 
     describe "from gross income of 100000" do
       let(:income)       { 100000                                    }
-      its(:rate)         { should be == Rational(44, 145)            }
+      its(:rate)         { should be == Rational(82, 271)            }
       its(:gross_income) { should be == 100000                       }
-      its(:net_income)   { should be == "69654.464".to_d             }
-      its(:taxes)        { should be == "30345.536".to_d             }
+      its(:net_income)   { should be == "69741.724".to_d             }
+      its(:taxes)        { should be == "30258.276".to_d             }
     end
 
     describe "from net income of 0" do
@@ -140,8 +140,8 @@ describe IncomeTax::Countries::Canada do
     describe "from net income of 100000" do
       let(:type)         { :net                                      }
       let(:income)       { 100000                                    }
-      its(:rate)         { should be == Rational(92, 329)            }
-      its(:gross_income) { should be == "138820.0405873001028".to_d  }
+      its(:rate)         { should be == Rational(137, 491)           }
+      its(:gross_income) { should be == "138702.1216683811839".to_d  }
       its(:net_income)   { should be == 100000                       }
       its(:taxes)        { should be == "38820.0405873001028".to_d   }
     end
