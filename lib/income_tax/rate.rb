@@ -86,7 +86,7 @@ module IncomeTax
     end
 
     def inspect
-      "#<%p:%p, %p>" % [ self.class, to_s, to_r ]
+      "#<%p:%p>" % [ self.class, to_s ]
     end
 
     def -@
