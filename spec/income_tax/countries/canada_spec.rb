@@ -143,7 +143,7 @@ describe IncomeTax::Countries::Canada do
       its(:rate)         { should be == Rational(137, 491)           }
       its(:gross_income) { should be == "138702.1216683811839".to_d  }
       its(:net_income)   { should be == 100000                       }
-      its(:taxes)        { should be == "38820.0405873001028".to_d   }
+      its(:taxes)        { should be == "38702.1216683811839".to_d   }
     end
   end
 end
