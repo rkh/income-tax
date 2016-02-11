@@ -41,10 +41,10 @@ describe IncomeTax::Countries::Iceland do
   describe "from gross income of 100000000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(125, 271)           }
+    its(:rate)         { should be == Rational(145, 314)           }
     its(:gross_income) { should be == 100000000                    }
-    its(:net_income)   { should be == "53874635.676".to_d          }
-    its(:taxes)        { should be == "46125364.324".to_d          }
+    its(:net_income)   { should be == "53821909.276".to_d          }
+    its(:taxes)        { should be == "46178090.724".to_d          }
   end
 
   describe "from net income of 0" do
@@ -91,9 +91,9 @@ describe IncomeTax::Countries::Iceland do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(145, 314)           }
-    its(:gross_income) { should be == "185798668.757440476".to_d   }
+    its(:rate)         { should be == Rational(67, 145)            }
+    its(:gross_income) { should be == "185896746.138392857".to_d   }
     its(:net_income)   { should be == 100000000                    }
-    its(:taxes)        { should be == "85798668.757440476".to_d    }
+    its(:taxes)        { should be == "85896746.138392857".to_d    }
   end
 end
