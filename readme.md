@@ -131,14 +131,13 @@ not taken into account.
 * Tax deductions are largely not taken into account.
 * Double taxation is not taken into account.
 * Rules around multiple tax regimes based on citizenship are not taken into account.
-* Differentiation between domestic and foreign income.
-* It does not differentiate on tax year. Wherever possible, rates for the current or even upcoming year have been used.
+* No differentiation between domestic and foreign income.
+* It only has limited support for taxes changing over time. Wherever possible, rates for the current or even upcoming year have been used.
 
 Specific examples of what is not taken into account:
 
 * French citizens (or in some cases, any new citizens) living in overseas territories often have to pay French income tax for the first five years.
 * French citizens living or working in Monaco have to pay French income tax instead.
-* German citizens living in Switzerland may have to pay German income tax for the first five years depending on the source of income.
 * Employees in the West Bank have a high likelihood of paying Israeli income tax instead of Palestinian income tax.
 * For people living in Puerto Rico and Guam, there is a chance that they may have to pay US federal income tax instead.
 * Mali has a [choose your own tax adventure](http://www.bbc.co.uk/news/magazine-31907670), and livestock is acceptable currency when paying taxes.
