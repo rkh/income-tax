@@ -47,23 +47,23 @@ describe IncomeTax::Rate do
       its(:to_d)    { should be == "0.2".to_d                 }
       its(:inspect) { should be == '#<IncomeTax::Rate:"20%">' }
 
-      example { String(rate)     .should be == "20%"      }
-      example { Rational(rate)   .should be == 0.2r       }
-      example { Float(rate)      .should be == 0.2        }
-      example { Integer(rate)    .should be == 0          }
-      example { BigDecimal(rate) .should be == "0.2".to_d }
+      example { expect(String(rate))     .to eq("20%")      }
+      example { expect(Rational(rate))   .to eq(0.2r)       }
+      example { expect(Float(rate))      .to eq(0.2)        }
+      example { expect(Integer(rate))    .to eq(0)          }
+      example { expect(BigDecimal(rate)) .to eq("0.2".to_d) }
 
       describe "#==" do
-        it { should     be == rate                   }
-        it { should     be == IncomeTax::Rate("20%") }
-        it { should     be == IncomeTax::Rate(0.2)   }
-        it { should     be == 0.2r                   }
-        it { should     be == 0.2                    }
-        it { should_not be == "20%"                  }
-        it { should_not be == 0.3r                   }
-        it { should_not be == 0.3                    }
-        it { should_not be == IncomeTax::Rate("30%") }
-        it { should_not be == IncomeTax::Rate(0.3)   }
+        it { is_expected.to     eq(rate)                   }
+        it { is_expected.to     eq(IncomeTax::Rate("20%")) }
+        it { is_expected.to     eq(IncomeTax::Rate(0.2))   }
+        it { is_expected.to     eq(0.2r)                   }
+        it { is_expected.to     eq(0.2)                    }
+        it { is_expected.not_to eq("20%")                  }
+        it { is_expected.not_to eq(0.3r)                   }
+        it { is_expected.not_to eq(0.3)                    }
+        it { is_expected.not_to eq(IncomeTax::Rate("30%")) }
+        it { is_expected.not_to eq(IncomeTax::Rate(0.3))   }
       end
     end
 
