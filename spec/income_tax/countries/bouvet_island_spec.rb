@@ -14,37 +14,37 @@ describe IncomeTax::Countries::BouvetIsland do
   describe "from gross income of 1000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
-    its(:rate)         { is_expected.to eq(Rational(0, 1))               }
+    its(:rate)         { should be == Rational(1, 4)               }
     its(:gross_income) { should be == 1000                         }
-    its(:net_income)   { is_expected.to eq(1000)                         }
-    its(:taxes)        { is_expected.to eq(0)                            }
+    its(:net_income)   { should be == 750                          }
+    its(:taxes)        { should be == 250                          }
   end
 
   describe "from gross income of 10000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
-    its(:rate)         { is_expected.to eq(Rational(0, 1))               }
+    its(:rate)         { should be == Rational(1, 4)               }
     its(:gross_income) { should be == 10000                        }
-    its(:net_income)   { is_expected.to eq(10000)                        }
-    its(:taxes)        { is_expected.to eq(0)                            }
+    its(:net_income)   { should be == 7500                         }
+    its(:taxes)        { should be == 2500                         }
   end
 
   describe "from gross income of 100000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
-    its(:rate)         { is_expected.to eq(Rational(13, 298))            }
+    its(:rate)         { should be == Rational(1, 4)               }
     its(:gross_income) { should be == 100000                       }
-    its(:net_income)   { is_expected.to eq("95637.6".to_d)               }
-    its(:taxes)        { is_expected.to eq("4362.4".to_d)                }
+    its(:net_income)   { should be == 75000                        }
+    its(:taxes)        { should be == 25000                        }
   end
 
   describe "from gross income of 100000000" do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { is_expected.to eq(Rational(91, 228))            }
+    its(:rate)         { should be == Rational(95, 246)            }
     its(:gross_income) { should be == 100000000                    }
-    its(:net_income)   { is_expected.to eq("60086964.6".to_d)            }
-    its(:taxes)        { is_expected.to eq("39913035.4".to_d)            }
+    its(:net_income)   { should be == "61381707.86".to_d           }
+    its(:taxes)        { should be == "38618292.14".to_d           }
   end
 
   describe "from net income of 0" do
@@ -61,39 +61,39 @@ describe IncomeTax::Countries::BouvetIsland do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
-    its(:rate)         { is_expected.to eq(Rational(0, 1))               }
-    its(:gross_income) { is_expected.to eq(1000)                         }
+    its(:rate)         { should be == Rational(1, 4)               }
+    its(:gross_income) { should be == "1333.33333333333333".to_d   }
     its(:net_income)   { should be == 1000                         }
-    its(:taxes)        { is_expected.to eq(0)                            }
+    its(:taxes)        { should be == "333.33333333333333".to_d    }
   end
 
   describe "from net income of 10000" do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 10000                                     }
-    its(:rate)         { is_expected.to eq(Rational(0, 1))               }
-    its(:gross_income) { is_expected.to eq(10000)                        }
+    its(:rate)         { should be == Rational(1, 4)               }
+    its(:gross_income) { should be == "13333.3333333333333".to_d   }
     its(:net_income)   { should be == 10000                        }
-    its(:taxes)        { is_expected.to eq(0)                            }
+    its(:taxes)        { should be == "3333.33333333333333".to_d   }
   end
 
   describe "from net income of 100000" do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000                                    }
-    its(:rate)         { is_expected.to eq(Rational(65, 1138))           }
-    its(:gross_income) { is_expected.to eq("106058.888888888889".to_d)   }
+    its(:rate)         { should be == Rational(1, 4)               }
+    its(:gross_income) { should be == "133333.333333333333".to_d   }
     its(:net_income)   { should be == 100000                       }
-    its(:taxes)        { is_expected.to eq("6058.8888888888889".to_d)    }
+    its(:taxes)        { should be == "33333.3333333333333".to_d   }
   end
 
   describe "from net income of 100000000" do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 100000000                                 }
-    its(:rate)         { is_expected.to eq(Rational(151, 378))           }
-    its(:gross_income) { is_expected.to eq("166521725.666666667".to_d)   }
+    its(:rate)         { should be == Rational(63, 163)            }
+    its(:gross_income) { should be == "162998845.252854812".to_d   }
     its(:net_income)   { should be == 100000000                    }
-    its(:taxes)        { is_expected.to eq("66521725.6666666667".to_d)   }
+    its(:taxes)        { should be == "62998845.252854812".to_d    }
   end
 end
