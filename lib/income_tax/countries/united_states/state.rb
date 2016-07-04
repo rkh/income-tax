@@ -14,7 +14,7 @@ module IncomeTax
         end
 
         def self.no_tax
-          flat_rate "0%"
+          flat_rate '0%'
         end
 
         def self.flat_rate(rate)

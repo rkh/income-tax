@@ -2,7 +2,7 @@ describe IncomeTax::Countries::Jersey do
   subject(:result) { described_class.new(income: income, income_type: type, tax_year: tax_year) }
   let(:type) { :gross }
 
-  describe "from gross income of 0" do
+  describe 'from gross income of 0' do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
     its(:rate)         { should be == Rational(1, 5)               }
@@ -11,7 +11,7 @@ describe IncomeTax::Countries::Jersey do
     its(:taxes)        { should be == 0                            }
   end
 
-  describe "from gross income of 1000" do
+  describe 'from gross income of 1000' do
     let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
     its(:rate)         { should be == Rational(1, 5)               }
@@ -20,34 +20,34 @@ describe IncomeTax::Countries::Jersey do
     its(:taxes)        { should be == 200                          }
   end
 
-  describe "from gross income of 10000" do
+  describe 'from gross income of 10000' do
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 10000                                     }
-    its(:rate)         { should be == Rational(1, 5)               }
-    its(:gross_income) { should be == 10000                        }
+    let(:income)       { 10_000 }
+    its(:rate)         { should be == Rational(1, 5) }
+    its(:gross_income) { should be == 10_000 }
     its(:net_income)   { should be == 8000                         }
     its(:taxes)        { should be == 2000                         }
   end
 
-  describe "from gross income of 100000" do
+  describe 'from gross income of 100000' do
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 100000                                    }
-    its(:rate)         { should be == Rational(1, 5)               }
-    its(:gross_income) { should be == 100000                       }
-    its(:net_income)   { should be == 80000                        }
-    its(:taxes)        { should be == 20000                        }
+    let(:income)       { 100_000 }
+    its(:rate)         { should be == Rational(1, 5) }
+    its(:gross_income) { should be == 100_000                       }
+    its(:net_income)   { should be == 80_000                        }
+    its(:taxes)        { should be == 20_000                        }
   end
 
-  describe "from gross income of 100000000" do
-    let(:tax_year)     { 2015                                      }
-    let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(1, 5)               }
-    its(:gross_income) { should be == 100000000                    }
-    its(:net_income)   { should be == 80000000                     }
-    its(:taxes)        { should be == 20000000                     }
+  describe 'from gross income of 100000000' do
+    let(:tax_year)     { 2015 }
+    let(:income)       { 100_000_000 }
+    its(:rate)         { should be == Rational(1, 5) }
+    its(:gross_income) { should be == 100_000_000                    }
+    its(:net_income)   { should be == 80_000_000                     }
+    its(:taxes)        { should be == 20_000_000                     }
   end
 
-  describe "from net income of 0" do
+  describe 'from net income of 0' do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 0                                         }
@@ -57,7 +57,7 @@ describe IncomeTax::Countries::Jersey do
     its(:taxes)        { should be == 0                            }
   end
 
-  describe "from net income of 1000" do
+  describe 'from net income of 1000' do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
     let(:income)       { 1000                                      }
@@ -67,33 +67,33 @@ describe IncomeTax::Countries::Jersey do
     its(:taxes)        { should be == 250                          }
   end
 
-  describe "from net income of 10000" do
+  describe 'from net income of 10000' do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 10000                                     }
-    its(:rate)         { should be == Rational(1, 5)               }
-    its(:gross_income) { should be == 12500                        }
-    its(:net_income)   { should be == 10000                        }
+    let(:income)       { 10_000 }
+    its(:rate)         { should be == Rational(1, 5) }
+    its(:gross_income) { should be == 12_500                        }
+    its(:net_income)   { should be == 10_000                        }
     its(:taxes)        { should be == 2500                         }
   end
 
-  describe "from net income of 100000" do
+  describe 'from net income of 100000' do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 100000                                    }
-    its(:rate)         { should be == Rational(1, 5)               }
-    its(:gross_income) { should be == 125000                       }
-    its(:net_income)   { should be == 100000                       }
-    its(:taxes)        { should be == 25000                        }
+    let(:income)       { 100_000 }
+    its(:rate)         { should be == Rational(1, 5) }
+    its(:gross_income) { should be == 125_000                       }
+    its(:net_income)   { should be == 100_000                       }
+    its(:taxes)        { should be == 25_000                        }
   end
 
-  describe "from net income of 100000000" do
+  describe 'from net income of 100000000' do
     let(:type)         { :net                                      }
     let(:tax_year)     { 2015                                      }
-    let(:income)       { 100000000                                 }
-    its(:rate)         { should be == Rational(1, 5)               }
-    its(:gross_income) { should be == 125000000                    }
-    its(:net_income)   { should be == 100000000                    }
-    its(:taxes)        { should be == 25000000                     }
+    let(:income)       { 100_000_000 }
+    its(:rate)         { should be == Rational(1, 5) }
+    its(:gross_income) { should be == 125_000_000                    }
+    its(:net_income)   { should be == 100_000_000                    }
+    its(:taxes)        { should be == 25_000_000                     }
   end
 end

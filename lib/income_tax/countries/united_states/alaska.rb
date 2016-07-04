@@ -2,7 +2,7 @@ module IncomeTax
   module Countries
     class UnitedStates
       class Alaska < State
-        register "Alaska", "AK"
+        register 'Alaska', 'AK'
         no_tax
       end
     end

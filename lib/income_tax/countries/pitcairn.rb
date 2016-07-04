@@ -5,8 +5,8 @@ module IncomeTax
     # consisting of manning the longboats to retrieve any arriving
     # cargo and passengers from the supply ship.
     class Pitcairn < Models::NoTaxes
-      register "Pitcairn", "PN", "PCN"
-      currency "NZD"
+      register 'Pitcairn', 'PN', 'PCN'
+      currency 'NZD'
     end
   end
 end

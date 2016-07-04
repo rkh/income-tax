@@ -7,23 +7,23 @@ module IncomeTax
         def level_category
           return :single unless married?
           return :joint if joint_statement?
-          return :separate unless head_of_household or head_of_household.nil?
+          return :separate unless head_of_household || head_of_household.nil?
           :head_of_household
         end
 
-        GROUPS = [:single, :joint, :separate, :head_of_household]
+        GROUPS = [:single, :joint, :separate, :head_of_household].freeze
 
         MARGINAL_TAX = [
-          [ "10%", 9225,   18450,  9225,   13150  ],
-          [ "15%", 37450,  74900,  37450,  50200  ],
-          [ "25%", 90750,  151200, 75600,  129600 ],
-          [ "28%", 189300, 230450, 115225, 209850 ],
-          [ "33%", 411500, 411500, 205750, 411500 ],
-          [ "35%", 413200, 464850, 232425, 439000 ],
-        ]
+          ['10%', 9225, 18_450, 9225, 13_150],
+          ['15%', 37_450,  74_900,  37_450,  50_200],
+          ['25%', 90_750,  151_200, 75_600,  129_600],
+          ['28%', 189_300, 230_450, 115_225, 209_850],
+          ['33%', 411_500, 411_500, 205_750, 411_500],
+          ['35%', 413_200, 464_850, 232_425, 439_000]
+        ].freeze
 
-        REMAINDER          = "39.6%"
-        STANDARD_DEDUTIONS = [ 6300, 12600, 6300, 9250 ]
+        REMAINDER          = '39.6%'.freeze
+        STANDARD_DEDUTIONS = [6300, 12_600, 6300, 9250].freeze
 
         GROUPS.each_with_index do |group, index|
           levels group do

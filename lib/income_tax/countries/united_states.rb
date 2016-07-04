@@ -1,8 +1,8 @@
 module IncomeTax
   module Countries
     class UnitedStates < Models::Generic
-      register "United States", "United States of America", "USA", "US"
-      currency "USD"
+      register 'United States', 'United States of America', 'USA', 'US'
+      currency 'USD'
 
       wants_options :married, :joint_statement, :head_of_household, :state
 
@@ -34,7 +34,7 @@ module IncomeTax
         @taxes = federal_taxes + state_taxes
       end
 
-      StateRegister = Register.new("state")
+      StateRegister = Register.new('state')
       require 'income_tax/countries/united_states/federal'
       require 'income_tax/countries/united_states/state'
       require 'income_tax/countries/united_states/alabama'

@@ -1,14 +1,14 @@
 module IncomeTax
   module Countries
     class Bangladesh < Models::Progressive
-      register "Bangladesh", "BD", "BGD"
-      currency "BDT"
+      register 'Bangladesh', 'BD', 'BGD'
+      currency 'BDT'
 
       wants_options :gender, :age, :disabled, :wounded_freedom_fighter
 
       factor      = 1000
-      follow_up   = [ [300, "10%"], [400, "15%"], [500, "20%"], [3000,  "25%"] ]
-      rest_amount = "30%"
+      follow_up   = [[300, '10%'], [400, '15%'], [500, '20%'], [3000, '25%']]
+      rest_amount = '30%'
       thresholds  = {
         male:                    220,
         female:                  275,
@@ -19,8 +19,8 @@ module IncomeTax
 
       thresholds.each do |category, threshold|
         levels(category) do
-          level threshold * factor, "0%"
-          follow_up.each  { |o,r| level offset(o * factor), r }
+          level threshold * factor, '0%'
+          follow_up.each  { |o, r| level offset(o * factor), r }
           remainder rest_amount
         end
       end
@@ -31,10 +31,10 @@ module IncomeTax
         return :senior                  if age >= 60
 
         case gender.to_s
-        when "male", "" then :male
-        when "female"   then :female
+        when 'male', '' then :male
+        when 'female'   then :female
         else
-          raise ArgumentError, "Bangladeshi tax law currently only recognizes male and female as genders"
+          raise ArgumentError, 'Bangladeshi tax law currently only recognizes male and female as genders'
         end
       end
     end

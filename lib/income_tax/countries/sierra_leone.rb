@@ -1,13 +1,13 @@
 module IncomeTax
   module Countries
     class SierraLeone < Models::Progressive
-      register "Sierra Leone", "SL", "SLE"
-      currency "SLL"
+      register 'Sierra Leone', 'SL', 'SLE'
+      currency 'SLL'
 
-      level 1800000,         "0%"
-      level offset(3600000), "15%"
-      level offset(3600000), "20%"
-      remainder              "30%"
+      level 1_800_000,         '0%'
+      level offset(3_600_000), '15%'
+      level offset(3_600_000), '20%'
+      remainder '30%'
     end
   end
 end

@@ -35,7 +35,7 @@ module IncomeTax
       end
 
       def self.register(*names)
-        @name  ||= names.first
+        @name ||= names.first
         self.names.concat(names)
         names.each { |name| register_on[name] = self }
       end
@@ -105,15 +105,15 @@ module IncomeTax
         # devide by two to avoid off by one errors
         if (net_income + taxes).to_i / 3 != gross_income.to_i / 3
           raise "net income and taxes don't add up to gross income. " \
-            "%s + %s was expected to result in %s, gave %s" % [
+            '%s + %s was expected to result in %s, gave %s' % [
               net_income, taxes, gross_income, net_income + taxes
             ]
         end
 
         # allow a 0.01% mismatch
-        if taxes > 0 and (1.0 - Rate(taxes, gross_income) / rate).abs > 0.0001
-          raise "tax rate does not give appropriate taxes. " \
-            "%s of %s is %s, not %s" % [
+        if taxes > 0 && (1.0 - Rate(taxes, gross_income) / rate).abs > 0.0001
+          raise 'tax rate does not give appropriate taxes. ' \
+            '%s of %s is %s, not %s' % [
               rate, gross_income, rate.gross_taxes(gross_income), taxes
             ]
         end
@@ -127,7 +127,7 @@ module IncomeTax
         options[:age]      ||= 30
         options[:tax_year] ||= Time.now.year
 
-        options.select! { |k,v| self.class.wants_options.include? k }
+        options.select! { |k, _v| self.class.wants_options.include? k }
 
         options[:tax_year] &&= Integer(options[:tax_year])
         options[:age]      &&= Integer(options[:age])
@@ -148,7 +148,7 @@ module IncomeTax
           @taxes        ||= gross_income - net_income
           @rate         ||= Rate(taxes, gross_income)
         else
-          raise RuntimeError, "calculate_gross was expected to either set rate, taxes or net_income"
+          raise 'calculate_gross was expected to either set rate, taxes or net_income'
         end
       end
 
@@ -166,7 +166,7 @@ module IncomeTax
           @taxes      ||= gross_income - net_income
           @rate       ||= Rate(taxes, gross_income)
         else
-          raise RuntimeError, "calculate_gross was expected to either set rate, taxes or net_income"
+          raise 'calculate_gross was expected to either set rate, taxes or net_income'
         end
       end
 
@@ -179,10 +179,10 @@ module IncomeTax
       end
 
       def inspect
-        net   = net_income   .is_a?(BigDecimal) ? net_income.to_s("F")   : net_income.to_s
-        gross = gross_income .is_a?(BigDecimal) ? gross_income.to_s("F") : gross_income.to_s
+        net   = net_income   .is_a?(BigDecimal) ? net_income.to_s('F')   : net_income.to_s
+        gross = gross_income .is_a?(BigDecimal) ? gross_income.to_s('F') : gross_income.to_s
 
-        "#<IncomeTax:%p, rate: %p, net: %s, gross: %s>" % [
+        '#<IncomeTax:%p, rate: %p, net: %s, gross: %s>' % [
           location_name, rate.to_s, net, gross
         ]
       end
@@ -207,7 +207,7 @@ module IncomeTax
       end
 
       def cast_value(value)
-        value == value.to_i ? value.to_i  : Rate.decimal(value)
+        value == value.to_i ? value.to_i : Rate.decimal(value)
       end
 
       private :calculate_net, :calculate_gross, :calculate, :set_net_income, :set_gross_income

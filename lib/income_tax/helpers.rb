@@ -7,7 +7,7 @@ module IncomeTax
     end
 
     def money(value)
-      if value.is_a? Integer or value.is_a? BigDecimal
+      if value.is_a?(Integer) || value.is_a?(BigDecimal)
         value
       else
         Rate.decimal(value)
@@ -15,7 +15,7 @@ module IncomeTax
     end
 
     def age_for(time, base = Time.now)
-      if time.month > base.month or (time.month == base.month and time.day >= base.day)
+      if time.month > base.month || (time.month == base.month && time.day >= base.day)
         base.year - time.year
       else
         base.year - time.year - 1

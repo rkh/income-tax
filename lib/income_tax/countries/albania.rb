@@ -1,12 +1,12 @@
 module IncomeTax
   module Countries
     class Albania < Models::Progressive
-      register "Albania", "AL", "ALB"
-      currency "ALL"
+      register 'Albania', 'AL', 'ALB'
+      currency 'ALL'
 
-      level 30000,  "0%"
-      level 130000, "13%"
-      remainder "23%"
+      level 30_000,  '0%'
+      level 130_000, '13%'
+      remainder '23%'
     end
   end
 end
