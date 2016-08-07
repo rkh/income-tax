@@ -116,7 +116,7 @@ IncomeTax.new("TZ", "16m", location: "Zanzibar")
 * **`joint_statement`:** If married, whether or not both spouses file a joint statement. Respected by the U.S. American tax model.
 * **`head_of_household`:** Whether or not the tax payer is the head of the household. Respected by the U.S. American tax model.
 * **`self_employed`:** Whether the tax payer is employed or freelancing. Respected by the Costa Rican and Nicaraguan tax model.
-* **`age` or `birthday`:** To determine age depended taxes. Respected by the Australian, Bangladeshi and Barbadian tax model.
+* **`age` or `birthday`:** To determine age depended taxes. Respected by the Australian, Bangladeshi, Barbadian and Dutch tax model.
 * **`gender`:** `male` or `female`, respected by the Bangladeshi tax model.
 * **`disabled`:** Whether or not the tax payer has a physical or psychological disability, respected by the Bangladeshi tax model.
 * **`wounded_freedom_fighter`:** Whether or not the tax payer is a war-wounded freedom fighter, respected by the Bangladeshi tax model.

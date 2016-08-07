@@ -1227,7 +1227,7 @@ Using a progressive tax model.
 ### Netherlands
 * **Other accepted names:** "NL", "NLD"
 * **Currency:** EUR
-* **Available options:** `tax_year`
+* **Available options:** `tax_year`, `birth_day`
 
 Using a progressive tax model.
 
