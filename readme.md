@@ -1,5 +1,7 @@
 # Income Tax Estimation
 
+[![Build Status](https://travis-ci.org/rkh/income-tax.svg?branch=master)](https://travis-ci.org/rkh/income-tax)
+
 Given a country and either the gross or net income, this library can estimate
 the personal income tax. These are very rough estimates, mostly ignoring any
 potential tax deductions.
