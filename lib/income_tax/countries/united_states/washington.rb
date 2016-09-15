@@ -2,7 +2,7 @@ module IncomeTax
   module Countries
     class UnitedStates
       class Washington < State
-        register "Washington", "WA"
+        register 'Washington', 'WA'
         no_tax
       end
     end

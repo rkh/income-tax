@@ -1,7 +1,7 @@
 module IncomeTax
   module Factory
     PATTERN = /^[€$£]?\d+(?:(?:\.\d)?[km])?(?:\/mo)?$/i
-    MONEY   = -> o { o.respond_to? :to_money }
+    MONEY   = -> (o) { o.respond_to? :to_money }
     private_constant :PATTERN
     extend self
 
@@ -10,7 +10,7 @@ module IncomeTax
       set_income(:net,   options)
       set_income(:gross, options)
 
-      location         = CountryRegister[options[:country]  || no_country]
+      location         = CountryRegister[options[:country] || no_country]
       options[:income] = parse_income(options[:income], location)
       location.new(options)
     end
@@ -38,8 +38,8 @@ module IncomeTax
       case value
       when String
         month = false
-        value = value.sub(/^[\$€£]/,  '')
-        value = value.sub(/\/mo$/) { month = true; "" }
+        value = value.sub(/^[\$€£]/, '')
+        value = value.sub(/\/mo$/) { month = true; '' }
         value = value.sub(/\.(\d)m/i, '\100000')
         value = value.sub(/\.(\d)k/i, '\100')
         value = value.sub(/m/i,       '000000')
@@ -58,7 +58,7 @@ module IncomeTax
     end
 
     def no_country
-      raise ArgumentError, "no country name given"
+      raise ArgumentError, 'no country name given'
     end
 
     private :parse_args, :parse_income, :set_income, :no_country

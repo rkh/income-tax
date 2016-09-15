@@ -1,4 +1,4 @@
-if ENV["SKIP_COVERAGE"].to_i == 0
+if ENV['SKIP_COVERAGE'].to_i == 0
   require 'simplecov'
   require 'coveralls'
 

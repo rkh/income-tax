@@ -23,11 +23,11 @@ module IncomeTax
         end
 
         def +(rate)
-          self.class.new(@levels.map { |b,r| [b, r + rate] }, @remainder + rate)
+          self.class.new(@levels.map { |b, r| [b, r + rate] }, @remainder + rate)
         end
 
         def multiply_brackets(factor)
-          self.class.new(@levels.map { |b,r| [(b*factor).to_i, r] }, @remainder)
+          self.class.new(@levels.map { |b, r| [(b * factor).to_i, r] }, @remainder)
         end
 
         def calculate(method, income)
@@ -96,7 +96,7 @@ module IncomeTax
           result.instance_eval(&block) if block
           @year_cache.clear
         elsif year
-          @year_cache[year] ||= tax_years.select { |k,_| k.to_i <= year }.map(&:last).inject(:merge)
+          @year_cache[year] ||= tax_years.select { |k, _| k.to_i <= year }.map(&:last).inject(:merge)
           result = @year_cache.fetch(year)
         end
 
@@ -109,7 +109,7 @@ module IncomeTax
 
       def levels(category = level_category)
         self.class.levels(year: tax_year).fetch(category) do
-          raise ArgumentError, "unkown level category #{category} (available: #{self.class.levels.keys.join(", ")})"
+          raise ArgumentError, "unkown level category #{category} (available: #{self.class.levels.keys.join(', ')})"
         end
       end
 

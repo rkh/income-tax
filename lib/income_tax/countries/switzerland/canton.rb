@@ -7,12 +7,12 @@ module IncomeTax
 
         def self.cantonal_multiplier(value = nil)
           @cantonal_multiplier = Rate(value) if value
-          @cantonal_multiplier ||= Rate("100%")
+          @cantonal_multiplier ||= Rate('100%')
         end
 
         def self.municipal_multiplier(value = nil)
           @municipal_multiplier = Rate(value) if value
-          @municipal_multiplier ||= Rate("100%")
+          @municipal_multiplier ||= Rate('100%')
         end
 
         def level_category

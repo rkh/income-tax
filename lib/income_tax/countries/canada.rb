@@ -1,8 +1,8 @@
 module IncomeTax
   module Countries
     class Canada < Models::Generic
-      register "Canada", "CA", "CAN"
-      currency "CAD"
+      register 'Canada', 'CA', 'CAN'
+      currency 'CAD'
 
       wants_options :territory
 
@@ -24,7 +24,7 @@ module IncomeTax
         @taxes = federal_taxes + territorial_taxes
       end
 
-      TerritoryRegister = Register.new("territory")
+      TerritoryRegister = Register.new('territory')
       Territory         = Class.new(Models::Progressive) { register_on TerritoryRegister }
 
       require 'income_tax/countries/canada/federal'

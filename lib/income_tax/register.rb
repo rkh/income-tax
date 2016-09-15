@@ -2,7 +2,7 @@ module IncomeTax
   class Register
     include Enumerable
 
-    def initialize(type = "entry")
+    def initialize(type = 'entry')
       @type     = type
       @register = {}
     end
@@ -26,16 +26,16 @@ module IncomeTax
     end
 
     def normalize(key)
-      key.to_s.
-        tr("_ÅåÉé", " AaEe").
-        gsub(/republic of (the)?/i, 'republic').
-        downcase.
-        gsub(' and ', '').
-        gsub(/\W/, '')
+      key.to_s
+         .tr('_ÅåÉé', ' AaEe')
+         .gsub(/republic of (the)?/i, 'republic')
+         .downcase
+         .gsub(' and ', '')
+         .gsub(/\W/, '')
     end
 
-    alias_method :[]=, :add
-    alias_method :[],  :get
+    alias []= add
+    alias [] get
     private :normalize
   end
 end
